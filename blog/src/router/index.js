@@ -17,6 +17,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/blogs/202511/proxifier-introduction',
+      name: 'proxifier-introduction',
+      component: () => import('../views/blogs/202511/ProxifierIntroduction.vue'),
+    },
   ],
 })
 
