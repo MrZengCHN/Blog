@@ -5,11 +5,11 @@ import BlogCard from '../components/BlogCard.vue'
 const posts = ref([
   {
     id: 1,
-    title: 'Mastering Network Traffic with Proxifier',
-    summary: 'Proxifier allows network applications that do not support working through proxy servers to operate through a SOCKS or HTTPS proxy and chains.',
-    date: 'Nov 26, 2025',
+    title: 'Proxifier：掌控网络流量的利器',
+    summary: 'Proxifier 允许不支持通过代理服务器工作的网络应用程序通过 SOCKS 或 HTTPS 代理及代理链进行操作。',
+    date: '2025年11月26日',
     author: 'Mr. Zeng',
-    tags: ['Tools', 'Network', 'Proxy'],
+    tags: ['工具', '网络', '代理'],
     image: 'https://picsum.photos/seed/proxifier/800/600',
     link: '/blogs/202511/proxifier-introduction'
   }
@@ -20,14 +20,14 @@ const posts = ref([
   <div class="container mx-auto px-4 py-8">
     <div class="flex flex-col md:flex-row justify-between items-end mb-8">
       <div>
-        <h1 class="text-4xl font-bold mb-2">Latest Posts</h1>
-        <p class="text-base-content/70">Explore my thoughts on technology and development.</p>
+        <h1 class="text-4xl font-bold mb-2">最新文章</h1>
+        <p class="text-base-content/70">探索我对技术和开发的思考。</p>
       </div>
       <div class="tabs tabs-boxed mt-4 md:mt-0">
-        <a class="tab tab-active">All</a>
+        <a class="tab tab-active">全部</a>
         <a class="tab">Vue</a>
         <a class="tab">CSS</a>
-        <a class="tab">Life</a>
+        <a class="tab">生活</a>
       </div>
     </div>
 
