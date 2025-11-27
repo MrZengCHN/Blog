@@ -18,6 +18,11 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogView.vue'),
+    },
+    {
       path: '/blogs/202511/proxifier-introduction',
       name: 'proxifier-introduction',
       component: () => import('../views/blogs/202511/ProxifierIntroduction.vue'),

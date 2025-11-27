@@ -11,6 +11,7 @@ import ThemeSelect from '@/components/ThemeSelect.vue'
       <div class="navbar-center">
         <ul class="menu menu-horizontal px-1">
           <li><RouterLink to="/">Home</RouterLink></li>
+          <li><RouterLink to="/blog">Blog</RouterLink></li>
           <li><RouterLink to="/about">About</RouterLink></li>
         </ul>
       </div>
