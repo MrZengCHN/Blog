@@ -28,7 +28,7 @@ const navigateToPost = () => {
     </figure>
     <div class="card-body">
       <div class="flex items-center gap-2 mb-2">
-        <span v-for="tag in post.tags" :key="tag" class="badge badge-primary badge-outline text-xs">
+        <span v-for="tag in post.tags" :key="tag" class="badge badge-primary badge-outline badge-sm whitespace-nowrap">
           {{ tag }}
         </span>
         <span class="text-xs text-base-content/60 ml-auto">{{ post.date }}</span>

@@ -2,8 +2,19 @@
 import { ref } from 'vue'
 import BlogCard from '../components/BlogCard.vue'
 import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.png'
+import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.jpg'
 
 const posts = ref([
+  {
+    id: 2,
+    title: 'Antigravity 登录技巧',
+    summary: '掌握 Antigravity 的多维身份验证与零重力快速通道，开启安全高效的数字宇宙之旅。',
+    date: '2025年11月27日',
+    author: 'Mr. Zeng',
+    tags: ['技巧', 'Antigravity', '安全'],
+    image: antigravityCover,
+    link: '/blogs/202511/antigravity-login-tips'
+  },
   {
     id: 1,
     title: 'Proxifier：掌控网络流量的利器',
@@ -23,12 +34,6 @@ const posts = ref([
       <div>
         <h1 class="text-4xl font-bold mb-2">最新文章</h1>
         <p class="text-base-content/70">探索我对技术和开发的思考。</p>
-      </div>
-      <div class="tabs tabs-boxed mt-4 md:mt-0">
-        <a class="tab tab-active">全部</a>
-        <a class="tab">Vue</a>
-        <a class="tab">CSS</a>
-        <a class="tab">生活</a>
       </div>
     </div>
 

@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'proxifier-introduction',
       component: () => import('../views/blogs/202511/ProxifierIntroduction.vue'),
     },
+    {
+      path: '/blogs/202511/antigravity-login-tips',
+      name: 'antigravity-login-tips',
+      component: () => import('../views/blogs/202511/AntigravityLoginTips.vue'),
+    },
   ],
 })
 

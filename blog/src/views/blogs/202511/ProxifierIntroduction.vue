@@ -1,5 +1,17 @@
 <script setup>
+import { ref } from 'vue';
 import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/ActivationCodes.vue';
+import coverImage from '@/assets/blogs/202511/ProxifierIntroduction/cover.png';
+import proxyServersImage from '@/assets/blogs/202511/ProxifierIntroduction/proxy-servers.png';
+import proxificationRulesImage from '@/assets/blogs/202511/ProxifierIntroduction/proxification-rules.png';
+
+const showPreview = ref(false);
+const previewImage = ref('');
+
+const openPreview = (image) => {
+  previewImage.value = image;
+  showPreview.value = true;
+};
 </script>
 
 <template>
@@ -15,7 +27,7 @@ import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/Act
         <span class="badge badge-primary badge-outline">工具</span>
       </div>
 
-      <img src="@/assets/blogs/202511/ProxifierIntroduction/cover.png" alt="Proxifier Banner" class="float-right w-1/2 max-w-sm rounded-xl shadow-lg ml-6 mb-4" />
+      <img :src="coverImage" alt="Proxifier Banner" class="float-right w-1/2 max-w-sm rounded-xl shadow-lg ml-6 mb-4 cursor-pointer hover:opacity-90 transition-opacity" @click="openPreview(coverImage)" />
 
       <p class="lead text-xl mb-6">
         在网络管理和代理工具的世界中，Proxifier 作为一款强大的实用工具脱颖而出，它允许不支持通过代理服务器工作的网络应用程序通过 SOCKS 或 HTTPS 代理及代理链进行操作。
@@ -42,7 +54,7 @@ import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/Act
         <li><strong>安装 Proxifier：</strong> 从<a href="https://www.proxifier.com/" target="_blank" rel="noopener noreferrer" class="link link-primary">官方网站</a>下载并安装应用程序。</li>
         <li><strong>添加代理服务器：</strong> 转到 <code>Profile -> Proxy Servers</code> 并添加你的 SOCKS5 或 HTTPS 代理详情。
           <div class="my-6 p-4 bg-base-200/50 rounded-xl border border-base-200">
-            <img src="@/assets/blogs/202511/ProxifierIntroduction/proxy-servers.png" alt="Proxy Servers Configuration" class="rounded-lg shadow-lg mx-auto" />
+            <img :src="proxyServersImage" alt="Proxy Servers Configuration" class="rounded-lg shadow-lg mx-auto cursor-pointer hover:opacity-90 transition-opacity" @click="openPreview(proxyServersImage)" />
             <p class="text-center text-sm text-base-content/60 mt-3 font-medium">图示：代理服务器配置界面</p>
           </div>
         </li>
@@ -52,7 +64,7 @@ import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/Act
             <li>Localhost（本地主机）：通常设置为“Direct”（直连）以避免代理本地流量。</li>
           </ul>
           <div class="my-6 p-4 bg-base-200/50 rounded-xl border border-base-200">
-            <img src="@/assets/blogs/202511/ProxifierIntroduction/proxification-rules.png" alt="Proxification Rules Configuration" class="rounded-lg shadow-lg mx-auto" />
+            <img :src="proxificationRulesImage" alt="Proxification Rules Configuration" class="rounded-lg shadow-lg mx-auto cursor-pointer hover:opacity-90 transition-opacity" @click="openPreview(proxificationRulesImage)" />
             <p class="text-center text-sm text-base-content/60 mt-3 font-medium">图示：代理规则配置界面</p>
           </div>
         </li>
@@ -70,6 +82,33 @@ import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/Act
         <span>提示：始终确保你有一个可靠的代理服务器。Proxifier 只是路由流量的工具；速度和稳定性取决于你使用的代理。</span>
       </div>
     </div>
+
+
+    <!-- Navigation -->
+    <div class="divider my-10"></div>
+    <div class="flex justify-between">
+      <button class="btn btn-ghost gap-2" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        上一篇：没有了
+      </button>
+      <router-link to="/blogs/202511/antigravity-login-tips" class="btn btn-ghost gap-2">
+        下一篇：Antigravity 登录技巧
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </router-link>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <dialog class="modal" :class="{ 'modal-open': showPreview }" @click.self="showPreview = false">
+      <div class="modal-box max-w-5xl p-0 overflow-hidden bg-transparent shadow-none">
+        <div class="relative">
+          <img :src="previewImage" alt="Full Preview" class="w-full rounded-xl" />
+          <button class="btn btn-circle btn-sm absolute right-2 top-2" @click="showPreview = false">✕</button>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button @click="showPreview = false">close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 
