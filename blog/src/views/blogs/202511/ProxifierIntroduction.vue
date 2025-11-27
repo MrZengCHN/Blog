@@ -1,4 +1,5 @@
 <script setup>
+import ActivationCodes from '@/components/blogs/202511/ProxifierIntroduction/ActivationCodes.vue';
 </script>
 
 <template>
@@ -14,7 +15,7 @@
         <span class="badge badge-primary badge-outline">工具</span>
       </div>
 
-      <img src="https://picsum.photos/seed/proxifier/800/400" alt="Proxifier Banner" class="w-full rounded-xl shadow-lg mb-8" />
+      <img src="@/assets/blogs/202511/ProxifierIntroduction/cover.png" alt="Proxifier Banner" class="float-right w-1/2 max-w-sm rounded-xl shadow-lg ml-6 mb-4" />
 
       <p class="lead text-xl mb-6">
         在网络管理和代理工具的世界中，Proxifier 作为一款强大的实用工具脱颖而出，它允许不支持通过代理服务器工作的网络应用程序通过 SOCKS 或 HTTPS 代理及代理链进行操作。
@@ -56,6 +57,8 @@
           </div>
         </li>
       </ol>
+
+      <ActivationCodes />
 
       <h2>为什么使用 Proxifier？</h2>
       <p>

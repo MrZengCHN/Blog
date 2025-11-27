@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import BlogCard from '../components/BlogCard.vue'
+import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.png'
 
 const posts = ref([
   {
@@ -10,7 +11,7 @@ const posts = ref([
     date: '2025年11月26日',
     author: 'Mr. Zeng',
     tags: ['工具', '网络', '代理'],
-    image: 'https://picsum.photos/seed/proxifier/800/600',
+    image: proxifierCover,
     link: '/blogs/202511/proxifier-introduction'
   }
 ])
