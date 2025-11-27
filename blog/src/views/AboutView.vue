@@ -81,9 +81,10 @@ const skills = {
               </div>
 
               <div class="card-actions justify-center mt-6 gap-2">
+                <div class="badge badge-ghost">自由</div> 
                 <div class="badge badge-ghost">民主</div> 
                 <div class="badge badge-ghost">科学</div>
-                <div class="badge badge-ghost">世界和平</div>
+                <div class="badge badge-ghost">和平</div>
               </div>
             </div>
           </div>
