@@ -1,4 +1,5 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const gloableStore = defineStore('gloableStore', () => {
     setTheme(localStorage.getItem('theme'))
@@ -6,6 +7,11 @@ export const gloableStore = defineStore('gloableStore', () => {
         document.documentElement.setAttribute('data-theme', theme)
         localStorage.setItem('theme', theme)
     }
-    return {setTheme}
-})
 
+    const isMusicPlayerVisible = ref(true)
+    function setMusicPlayerVisibility(visible) {
+        isMusicPlayerVisible.value = visible
+    }
+
+    return { setTheme, isMusicPlayerVisible, setMusicPlayerVisibility }
+})

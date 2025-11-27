@@ -5,7 +5,7 @@ import MusicPlayer from './components/MusicPlayer.vue'
 </script>
 
 <template>
-  <div class="min-h-screen relative overflow-hidden">
+  <div class="min-h-screen relative">
     <!-- Background Color Layer -->
     <div class="fixed inset-0 bg-base-300 -z-20"></div>
 

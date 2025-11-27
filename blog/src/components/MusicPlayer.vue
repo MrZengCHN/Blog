@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
+import { gloableStore } from '@/stores/gloableStore'
+
+const store = gloableStore()
 
 // Auto-load music files
 const musicModules = import.meta.glob('@/assets/music/*.mp3', { eager: true, query: '?url', import: 'default' })
@@ -52,15 +55,41 @@ const prevTrack = () => {
   playTrack(prevIndex)
 }
 
+const isDragging = ref(false)
+const progressBarRef = ref(null)
+
 const updateProgress = () => {
-  progress.value = (audio.value.currentTime / audio.value.duration) * 100
+  if (!isDragging.value) {
+    progress.value = (audio.value.currentTime / audio.value.duration) * 100
+  }
 }
 
-const seek = (event) => {
-  const width = event.target.clientWidth
-  const clickX = event.offsetX
+const handleMouseDown = (event) => {
+  isDragging.value = true
+  updateDrag(event)
+  document.addEventListener('mousemove', updateDrag)
+  document.addEventListener('mouseup', stopDrag)
+}
+
+const updateDrag = (event) => {
+  if (!progressBarRef.value) return
+  const rect = progressBarRef.value.getBoundingClientRect()
+  const x = event.clientX - rect.left
+  const width = rect.width
+  const percentage = Math.max(0, Math.min(100, (x / width) * 100))
+  progress.value = percentage
+}
+
+const stopDrag = (event) => {
+  if (!isDragging.value) return
+  isDragging.value = false
+  updateDrag(event)
   const duration = audio.value.duration
-  audio.value.currentTime = (clickX / width) * duration
+  if (duration) {
+    audio.value.currentTime = (progress.value / 100) * duration
+  }
+  document.removeEventListener('mousemove', updateDrag)
+  document.removeEventListener('mouseup', stopDrag)
 }
 
 const updateVolume = () => {
@@ -82,8 +111,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fixed bottom-4 left-4 z-50">
-    <div class="card w-80 bg-base-100/70 backdrop-blur-md shadow-xl border border-base-200 overflow-visible transition-all duration-300 hover:bg-base-100/90">
+  <div class="fixed bottom-4 left-4 z-50 transition-all duration-300" :class="{ 'translate-y-full opacity-0': !store.isMusicPlayerVisible }">
+    <div class="card w-80 bg-base-100/70 backdrop-blur-md shadow-xl border border-base-200 overflow-visible transition-all duration-300 hover:bg-base-100/90 relative group">
+      <!-- Hide Button -->
+      <button class="btn btn-ghost btn-xs btn-circle absolute -top-2 -right-2 z-50 bg-base-100 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity" @click="store.setMusicPlayerVisibility(false)" title="Hide Player">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </button>
+
       <div class="card-body p-4">
         <!-- Track Info -->
         <div class="flex items-center gap-3 mb-2">
@@ -103,7 +137,7 @@ onMounted(() => {
         </div>
 
         <!-- Progress Bar -->
-        <div class="w-full h-1 bg-base-300 rounded-full cursor-pointer mb-3 group" @click="seek">
+        <div class="w-full h-1 bg-base-300 rounded-full cursor-pointer mb-3 group" @mousedown="handleMouseDown" ref="progressBarRef">
           <div class="h-full bg-primary rounded-full relative" :style="{ width: `${progress}%` }">
              <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
@@ -111,12 +145,12 @@ onMounted(() => {
 
         <!-- Controls -->
         <div class="flex justify-between items-center">
-           <!-- Volume Control (Hover to show) -->
-           <div class="dropdown dropdown-top dropdown-hover">
+           <!-- Volume Control (Click to show) -->
+           <div class="dropdown dropdown-top">
               <label tabindex="0" class="btn btn-ghost btn-xs btn-circle">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
               </label>
-              <div tabindex="0" class="dropdown-content p-2 shadow bg-base-100 rounded-box w-24 mb-2">
+              <div tabindex="0" class="dropdown-content p-2 shadow bg-base-100 rounded-box w-24 mb-2 z-[100]">
                  <input type="range" min="0" max="1" step="0.01" v-model="volume" @input="updateVolume" class="range range-xs range-primary" />
               </div>
            </div>
