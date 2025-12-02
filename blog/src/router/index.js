@@ -32,6 +32,11 @@ const router = createRouter({
       name: 'antigravity-login-tips',
       component: () => import('../views/blogs/202511/AntigravityLoginTips.vue'),
     },
+    {
+      path: '/blogs/202512/ai-prompt-tool',
+      name: 'ai-prompt-tool',
+      component: () => import('../views/blogs/202512/AiPromptTool/AiPromptTool.vue'),
+    },
   ],
 })
 

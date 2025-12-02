@@ -3,8 +3,19 @@ import { ref } from 'vue'
 import BlogCard from '../components/BlogCard.vue'
 import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.png'
 import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.jpg'
+import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
 
 const posts = ref([
+  {
+    id: 3,
+    title: '使用 Vue3 实现的 AI 提示词工具分享',
+    summary: '分享一个基于 Vue3 + DaisyUI 开发的 AI 提示词管理工具，包含常用高质量提示词。',
+    date: '2025年12月1日',
+    author: 'Mr. Zeng',
+    tags: ['Vue3', 'AI', '工具'],
+    image: aiPromptToolCover,
+    link: '/blogs/202512/ai-prompt-tool'
+  },
   {
     id: 2,
     title: 'Antigravity 登录技巧',
@@ -38,13 +49,8 @@ const posts = ref([
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <BlogCard 
-        v-for="(post, index) in posts" 
-        :key="post.id" 
-        :post="post" 
-        class="animate-fade-in-up"
-        :style="{ animationDelay: `${index * 150}ms` }"
-      />
+      <BlogCard v-for="(post, index) in posts" :key="post.id" :post="post" class="animate-fade-in-up"
+        :style="{ animationDelay: `${index * 150}ms` }" />
     </div>
   </div>
 </template>
@@ -55,6 +61,7 @@ const posts = ref([
     opacity: 0;
     transform: translate3d(0, -20px, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
@@ -70,6 +77,7 @@ const posts = ref([
     opacity: 0;
     transform: translate3d(0, 20px, 0);
   }
+
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
