@@ -44,27 +44,45 @@ const copyPrompt = (content) => {
 
 <template>
     <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Breadcrumbs -->
+        <div class="text-sm breadcrumbs mb-6 animate-fade-in-down">
+            <ul>
+                <li><router-link to="/">首页</router-link></li>
+                <li><router-link to="/blog">博客</router-link></li>
+                <li>AI 提示词工具</li>
+            </ul>
+        </div>
+
         <!-- Header -->
-        <div class="mb-8 animate-fade-in-down">
-            <img :src="cover" alt="Cover" class="w-full h-64 md:h-96 object-cover rounded-2xl shadow-xl mb-6" />
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">使用 Vue3 实现的 AI 提示词工具分享</h1>
-            <div class="flex items-center gap-4 text-base-content/70">
+        <div class="mb-8 text-center animate-fade-in-down">
+            <h1
+                class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                使用 Vue3 实现的 AI 提示词工具分享
+            </h1>
+            <div class="flex flex-wrap justify-center items-center gap-4 text-base-content/70 text-sm mb-8">
                 <div class="flex items-center gap-2">
-                    <span>Mr. Zeng</span>
+                    <span class="font-medium">Mr. Zeng</span>
                 </div>
-                <span>•</span>
+                <span class="hidden md:inline">•</span>
                 <span>2025年12月1日</span>
-                <span>•</span>
+                <span class="hidden md:inline">•</span>
                 <div class="flex gap-2">
                     <span class="badge badge-primary badge-outline">Vue3</span>
                     <span class="badge badge-secondary badge-outline">AI</span>
                     <span class="badge badge-accent badge-outline">工具</span>
                 </div>
             </div>
+
+            <figure
+                class="w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-2xl shadow-2xl bg-base-200 mb-8">
+                <img :src="cover" alt="Cover"
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </figure>
         </div>
 
         <!-- Content -->
-        <div class="prose prose-lg max-w-none mb-12 animate-fade-in-up animation-delay-300">
+        <div
+            class="prose prose-lg max-w-none mb-12 animate-fade-in-up animation-delay-300 mx-auto bg-base-100 p-8 rounded-box shadow-lg">
             <p>
                 在 AI 时代，提示词（Prompt）就是生产力。为了更高效地管理和使用常用的 AI 提示词，我使用 Vue3 开发了一个简单的 <a
                     href="https://mrzengchn.github.io/AI-Prompt-Generator/#/" target="_blank"
@@ -72,10 +90,10 @@ const copyPrompt = (content) => {
                 今天分享一些我日常开发中常用的高质量提示词，希望能帮助大家提高效率。
             </p>
 
-            <div class="not-prose mb-8">
+            <div class="not-prose mb-8 flex justify-center">
                 <a href="https://mrzengchn.github.io/AI-Prompt-Generator/#/" target="_blank"
-                    class="btn btn-primary gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    class="btn btn-primary gap-2 btn-lg shadow-lg hover:scale-105 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -85,9 +103,12 @@ const copyPrompt = (content) => {
             </div>
 
             <div class="not-prose mb-12">
-                <h3 class="text-2xl font-bold mb-6">主要功能</h3>
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <span class="text-primary">#</span> 主要功能
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -101,7 +122,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">添加、编辑、删除、排序需求条目</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -115,7 +137,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">高/中/低三级优先级</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -129,7 +152,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">使用标签组织需求</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -143,7 +167,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">为每个需求添加相关文件路径</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -157,7 +182,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">直接拖动卡片调整顺序</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -171,7 +197,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">按内容、标签、文件快速查找</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -185,7 +212,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">支持多种文件编码格式</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -199,7 +227,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">个性化 Markdown 导出内容</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -213,7 +242,8 @@ const copyPrompt = (content) => {
                             <span class="text-sm opacity-70">一键导出为标准格式文档</span>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200">
+                    <div
+                        class="flex items-start gap-3 p-4 bg-base-100 rounded-lg shadow-sm border border-base-200 hover:shadow-md transition-shadow">
                         <div class="text-success mt-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
@@ -230,9 +260,11 @@ const copyPrompt = (content) => {
                 </div>
             </div>
 
-            <h3 class="text-2xl font-bold mb-6">为什么需要管理提示词？</h3>
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <span class="text-secondary">#</span> 为什么需要管理提示词？
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 not-prose">
-                <div class="card bg-base-100 shadow-sm border border-base-200">
+                <div class="card bg-base-100 shadow-sm border border-base-200 hover:shadow-md transition-all">
                     <div class="card-body p-6 items-center text-center">
                         <div
                             class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
@@ -246,7 +278,7 @@ const copyPrompt = (content) => {
                         <p class="text-sm opacity-70">好的提示词值得反复使用，避免重复造轮子。</p>
                     </div>
                 </div>
-                <div class="card bg-base-100 shadow-sm border border-base-200">
+                <div class="card bg-base-100 shadow-sm border border-base-200 hover:shadow-md transition-all">
                     <div class="card-body p-6 items-center text-center">
                         <div
                             class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-2">
@@ -260,7 +292,7 @@ const copyPrompt = (content) => {
                         <p class="text-sm opacity-70">记录并不断改进提示词，持续获得更好的结果。</p>
                     </div>
                 </div>
-                <div class="card bg-base-100 shadow-sm border border-base-200">
+                <div class="card bg-base-100 shadow-sm border border-base-200 hover:shadow-md transition-all">
                     <div class="card-body p-6 items-center text-center">
                         <div
                             class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-2">
@@ -302,6 +334,32 @@ const copyPrompt = (content) => {
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Navigation -->
+        <div
+            class="flex justify-between items-center mt-12 pt-8 border-t border-base-200 animate-fade-in-up animation-delay-700">
+            <router-link to="/blogs/202511/antigravity-login-tips" class="btn btn-outline gap-2 group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:-translate-x-1 transition-transform"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                <div class="text-left">
+                    <div class="text-xs opacity-50 font-normal">上一篇</div>
+                    <div class="font-bold">Antigravity 登录技巧</div>
+                </div>
+            </router-link>
+
+            <router-link to="/blogs/202512/clash-global-extension" class="btn btn-outline gap-2 group">
+                <div class="text-right">
+                    <div class="text-xs opacity-50 font-normal">下一篇</div>
+                    <div class="font-bold">Clash全局扩展脚本分享</div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </router-link>
         </div>
     </div>
 </template>

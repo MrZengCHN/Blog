@@ -4,8 +4,19 @@ import BlogCard from '../components/BlogCard.vue'
 import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.png'
 import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.jpg'
 import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
+import clashGlobalExtensionCover from '@/assets/blogs/202512/ClashGlobalExtension/cover.jpg'
 
 const posts = ref([
+  {
+    id: 4,
+    title: 'Clash全局扩展脚本分享',
+    summary: '分享一个 Clash 全局扩展脚本，自动根据节点名称进行国家/地区分组，实现智能分流。',
+    date: '2025年12月4日',
+    author: 'Mr. Zeng',
+    tags: ['Clash', 'JavaScript', '代理'],
+    image: clashGlobalExtensionCover,
+    link: '/blogs/202512/clash-global-extension'
+  },
   {
     id: 3,
     title: '使用 Vue3 实现的 AI 提示词工具分享',

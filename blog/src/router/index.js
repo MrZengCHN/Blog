@@ -37,6 +37,11 @@ const router = createRouter({
       name: 'ai-prompt-tool',
       component: () => import('../views/blogs/202512/AiPromptTool/AiPromptTool.vue'),
     },
+    {
+      path: '/blogs/202512/clash-global-extension',
+      name: 'clash-global-extension',
+      component: () => import('../views/blogs/202512/ClashGlobalExtension/ClashGlobalExtension.vue'),
+    },
   ],
 })
 
