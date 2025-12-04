@@ -43,6 +43,14 @@
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
                     <span class="text-primary">#</span> 脚本介绍
                 </h2>
+
+                <!-- Comic Strip -->
+                <div class="mb-8 text-center">
+                    <img :src="comicImg" alt="Clash Script Comic"
+                        class="rounded-lg shadow-lg max-w-full md:max-w-2xl mx-auto cursor-zoom-in hover:shadow-xl transition-shadow duration-300"
+                        @click="showComicPreview = true" />
+                    <p class="text-sm text-base-content/60 mt-2">点击查看大图</p>
+                </div>
                 <div class="bg-base-200 p-6 rounded-lg border-l-4 border-primary">
                     <p class="mb-4">
                         Clash 是一款非常强大的代理工具，而它的全局扩展脚本（Global Extension Script）功能更是让配置的灵活性上了一个台阶。
@@ -108,17 +116,33 @@
                 </svg>
             </button>
         </div>
+        <!-- Image Preview Modal -->
+        <div v-if="showComicPreview"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 cursor-zoom-out transition-all duration-300"
+            @click="showComicPreview = false">
+            <img :src="comicImg" alt="Clash Script Comic Full"
+                class="max-w-full max-h-full rounded-lg shadow-2xl animate-scale-up" @click.stop />
+            <button class="absolute top-4 right-4 btn btn-circle btn-ghost text-white"
+                @click="showComicPreview = false">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import comicImg from '@/assets/blogs/202512/ClashGlobalExtension/comic.jpg'
 
 onMounted(() => {
     window.scrollTo(0, 0)
 })
 
 const copied = ref(false)
+const showComicPreview = ref(false)
 
 const scriptContent = `function main(config, profileName) {
     // 1. 配置常量
@@ -274,5 +298,21 @@ const copyCode = async () => {
 
 .animation-delay-500 {
     animation-delay: 0.5s;
+}
+
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scale-up {
+    animation: scaleUp 0.3s ease-out both;
 }
 </style>
