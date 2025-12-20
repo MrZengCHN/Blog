@@ -154,6 +154,49 @@
                 </div>
             </section>
 
+            <!-- Desktop Tutorial -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-secondary">#</span> 电脑端使用教程
+                </h2>
+                <div class="bg-base-200 p-6 rounded-lg border-l-4 border-secondary mb-6">
+                    <p>
+                        电脑端推荐使用 <strong class="text-secondary">Clash Verge</strong>，在订阅页面找到"全局扩展脚本"区域，按以下步骤操作：
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="px-4 pt-4">
+                            <img :src="desktopStep1Img" alt="Desktop Step 1"
+                                class="rounded-xl shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = desktopStep1Img" />
+                        </figure>
+                        <div class="card-body pt-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-secondary badge-lg">1</span>
+                                <h3 class="font-bold">打开编辑器</h3>
+                            </div>
+                            <p class="text-sm text-base-content/70">在"全局扩展脚本"区域，点击右键选择"编辑文件"</p>
+                        </div>
+                    </div>
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="px-4 pt-4">
+                            <img :src="desktopStep2Img" alt="Desktop Step 2"
+                                class="rounded-xl shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = desktopStep2Img" />
+                        </figure>
+                        <div class="card-body pt-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-secondary badge-lg">2</span>
+                                <h3 class="font-bold">粘贴保存</h3>
+                            </div>
+                            <p class="text-sm text-base-content/70">将上方脚本粘贴到编辑器中，点击"保存"按钮</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Effect Display -->
             <section class="mb-12">
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -232,6 +275,97 @@
                     </a>
                 </div>
             </section>
+
+            <!-- Mobile Tutorial -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="text-info">#</span> 手机端使用教程
+                </h2>
+                <div class="bg-base-200 p-6 rounded-lg border-l-4 border-info">
+                    <p class="mb-4">
+                        手机用户推荐使用 <strong class="text-info">FlClash</strong>，这是一款开源的 Clash 客户端，支持 Android 平台，界面简洁易用。
+                    </p>
+                    <div class="flex flex-wrap gap-4 items-center">
+                        <a href="https://github.com/chen08209/FlClash" target="_blank"
+                            class="btn btn-info gap-2 hover:scale-105 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                            GitHub 仓库
+                        </a>
+                        <div class="flex items-center gap-2 text-base-content/70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-sm">支持 Android</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="px-4 pt-4">
+                            <img :src="step1Img" alt="Step 1"
+                                class="rounded-xl shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = step1Img" />
+                        </figure>
+                        <div class="card-body pt-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-info badge-lg">1</span>
+                                <h3 class="font-bold">点击脚本按钮</h3>
+                            </div>
+                            <p class="text-sm text-base-content/70">在配置页面点击顶部的 Σ 图标进入脚本管理</p>
+                        </div>
+                    </div>
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="px-4 pt-4">
+                            <img :src="step2Img" alt="Step 2"
+                                class="rounded-xl shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = step2Img" />
+                        </figure>
+                        <div class="card-body pt-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-info badge-lg">2</span>
+                                <h3 class="font-bold">添加扩展脚本</h3>
+                            </div>
+                            <p class="text-sm text-base-content/70">点击右下角 + 号</p>
+                        </div>
+                    </div>
+                    <div class="card bg-base-100 border border-base-300 shadow-sm">
+                        <figure class="px-4 pt-4">
+                            <img :src="step3Img" alt="Step 3"
+                                class="rounded-xl shadow-md cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = step3Img" />
+                        </figure>
+                        <div class="card-body pt-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-info badge-lg">3</span>
+                                <h3 class="font-bold">粘贴脚本</h3>
+                            </div>
+                            <p class="text-sm text-base-content/70">将上方脚本粘贴到编辑器中并保存</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Effect Display -->
+                <div class="mt-6">
+                    <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                        <span class="text-success">✨</span> 手机端效果展示
+                    </h3>
+                    <div class="flex justify-center">
+                        <div class="w-full max-w-xs overflow-hidden rounded-2xl shadow-xl border border-base-300">
+                            <img :src="mobileEffectImg" alt="FlClash Mobile Effect"
+                                class="w-full h-auto cursor-pointer hover:scale-[1.02] transition-transform"
+                                @click="previewImage = mobileEffectImg" />
+                        </div>
+                    </div>
+                    <p class="text-center text-sm text-base-content/60 mt-3">点击图片查看大图</p>
+                </div>
+            </section>
         </article>
 
         <!-- Navigation -->
@@ -273,12 +407,32 @@
                 </svg>
             </button>
         </div>
+
+        <!-- Step Image Preview Modal -->
+        <div v-if="previewImage"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 cursor-zoom-out transition-all duration-300"
+            @click="previewImage = null">
+            <img :src="previewImage" alt="Step Preview"
+                class="max-w-full max-h-full rounded-lg shadow-2xl animate-scale-up" @click.stop />
+            <button class="absolute top-4 right-4 btn btn-circle btn-ghost text-white" @click="previewImage = null">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
     </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import comicImg from '@/assets/blogs/202512/ClashGlobalExtension/comic.jpg'
+import step1Img from '@/assets/blogs/202512/ClashGlobalExtension/step1.jpg'
+import step2Img from '@/assets/blogs/202512/ClashGlobalExtension/step2.jpg'
+import step3Img from '@/assets/blogs/202512/ClashGlobalExtension/step3.jpg'
+import mobileEffectImg from '@/assets/blogs/202512/ClashGlobalExtension/mobile_effect.jpg'
+import desktopStep1Img from '@/assets/blogs/202512/ClashGlobalExtension/desktop_step1.png'
+import desktopStep2Img from '@/assets/blogs/202512/ClashGlobalExtension/desktop_step2.png'
 
 onMounted(() => {
     window.scrollTo(0, 0)
@@ -286,6 +440,7 @@ onMounted(() => {
 
 const copied = ref(false)
 const showComicPreview = ref(false)
+const previewImage = ref(null)
 
 const scriptContent = `const main = (config) => {
     const rules = config.rules;
