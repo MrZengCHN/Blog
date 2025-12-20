@@ -55,10 +55,85 @@
                     <p class="mb-4">
                         Clash 是一款非常强大的代理工具，而它的全局扩展脚本（Global Extension Script）功能更是让配置的灵活性上了一个台阶。
                     </p>
-                    <p>
-                        这个脚本的主要用途是自动根据代理节点的名称，将其归类到对应的国家/地区分组中，并生成相应的策略组。
-                        这样，无论你的机场节点如何变化，只要名称中包含特定的关键字，就能自动分流，无需手动维护繁琐的配置。
+                    <p class="mb-4">
+                        这个脚本会自动根据代理节点名称中的关键字，将其归类到对应的国家/地区分组中。对于每个国家，脚本会生成两种策略组：
                     </p>
+                    <ul class="list-none space-y-2 mb-4">
+                        <li class="flex items-start gap-2">
+                            <span class="text-lg">⚡</span>
+                            <span><strong>URL Test 模式</strong> — 自动测速并选择延迟最低的节点，适合追求速度的场景。</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-lg">⚖️</span>
+                            <span><strong>Load Balance 模式</strong> — 采用轮询策略分散流量到多个节点，适合需要负载均衡或规避单节点限制的场景。</span>
+                        </li>
+                    </ul>
+                    <p>
+                        无论你的机场节点如何变化，只要名称中包含特定的关键字，就能自动分流，无需手动维护繁琐的配置。
+                    </p>
+                </div>
+
+                <!-- Mode Comparison Table -->
+                <div class="overflow-x-auto mt-6">
+                    <table class="table table-zebra w-full">
+                        <thead>
+                            <tr class="bg-base-300">
+                                <th class="text-center">对比项</th>
+                                <th class="text-center">⚡ URL Test</th>
+                                <th class="text-center">⚖️ Load Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">工作原理</td>
+                                <td>定期测速，自动切换到延迟最低的节点</td>
+                                <td>轮询分配，将请求均匀分散到多个节点</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">适用场景</td>
+                                <td>日常浏览、视频观看、对延迟敏感的应用</td>
+                                <td>大流量下载、多线程任务、规避单节点限速</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">优点</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-sm">
+                                        <li>始终保持最优延迟</li>
+                                        <li>自动故障转移</li>
+                                        <li>单一出口 IP，稳定性高</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-disc list-inside text-sm">
+                                        <li>充分利用多节点带宽</li>
+                                        <li>分散流量，降低被限速风险</li>
+                                        <li>提升整体吞吐量</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">缺点</td>
+                                <td>
+                                    <ul class="list-disc list-inside text-sm">
+                                        <li>流量集中于单节点</li>
+                                        <li>可能触发单节点限速</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-disc list-inside text-sm">
+                                        <li>出口 IP 变化频繁</li>
+                                        <li>可能影响需要固定 IP 的服务</li>
+                                        <li>不保证每次选中低延迟节点</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">推荐使用</td>
+                                <td class="text-success">🎮 游戏 / 📹 视频会议 / 🌐 日常浏览 / 🛠AI对话 </td>
+                                <td class="text-info">📥 下载 / 🎬 4K 流媒体 / 🔄 多线程任务</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
@@ -144,47 +219,50 @@ onMounted(() => {
 const copied = ref(false)
 const showComicPreview = ref(false)
 
-const scriptContent = `function main(config, profileName) {
+const scriptContent = `const main = (config) => {
+    const rules = config.rules;
+    const lastRule = rules[rules.length - 1];
+    const profileName = lastRule.split(",").pop();
+
     // 1. 配置常量
     const TEST_URL = "http://www.gstatic.com/generate_204";
-    const TEST_INTERVAL = 6000;
+    const TEST_INTERVAL = 600;
 
-    // 2. 定义国家规则（提取出来以保持 main 函数整洁）
+    // 2. 国家配置
     const countriesConfig = [
-        { name: "🇺🇸 美国", keywords: ["美国", "United States", "US"] },
-        { name: "🇯🇵 日本", keywords: ["日本", "Japan", "JP"] },
-        { name: "🇸🇬 新加坡", keywords: ["新加坡", "Singapore", "SG"] },
-        { name: "🇹🇼 台湾", keywords: ["台湾", "Taiwan", "TW", "CN_TW"] },
-        { name: "🇭🇰 香港", keywords: ["香港", "Hong Kong", "HK", "CN_HK"] },
-        { name: "🇩🇪 德国", keywords: ["德国", "Germany", "DE"] },
-        { name: "🇬🇧 英国", keywords: ["英国", "United Kingdom", "UK", "GB"] },
-        { name: "🇫🇷 法国", keywords: ["法国", "France", "FR"] },
-        { name: "🇨🇦 加拿大", keywords: ["加拿大", "Canada", "CA"] },
-        { name: "🇰🇷 韩国", keywords: ["韩国", "Korea", "KR"] },
-        { name: "🇦🇺 澳大利亚", keywords: ["澳大利亚", "Australia", "AU"] },
-        { name: "🇦🇪 阿联酋", keywords: ["阿联酋", "UAE", "Dubai"] },
-        { name: "🇲🇴 澳门", keywords: ["澳门", "Macau", "MO"] },
-        { name: "🇮🇳 印度", keywords: ["印度", "India", "IN"] },
-        { name: "🇧🇷 巴西", keywords: ["巴西", "Brazil", "BR"] },
-        { name: "🇷🇺 俄罗斯", keywords: ["俄罗斯", "Russia", "RU"] },
-        { name: "🇹🇷 土耳其", keywords: ["土耳其", "Turkey", "TR"] },
-        { name: "🇹🇭 泰国", keywords: ["泰国", "Thailand", "TH"] },
-        { name: "🇲🇾 马来西亚", keywords: ["马来西亚", "Malaysia", "MY"] },
-        { name: "🇻🇳 越南", keywords: ["越南", "Vietnam", "VN"] },
-        { name: "🇵🇭 菲律宾", keywords: ["菲律宾", "Philippines", "PH"] },
-        { name: "🇦🇷 阿根廷", keywords: ["阿根廷", "Argentina", "AR"] },
-        { name: "🇰🇿 哈萨克斯坦", keywords: ["哈萨克斯坦", "Kazakhstan", "KZ"] },
-        { name: "🇪🇬 埃及", keywords: ["埃及", "Egypt", "EG"] },
-        { name: "🇵🇰 巴基斯坦", keywords: ["巴基斯坦", "Pakistan", "PK"] },
-        { name: "🇳🇬 尼日利亚", keywords: ["尼日利亚", "Nigeria", "NG"] },
-        { name: "🇺🇦 乌克兰", keywords: ["乌克兰", "Ukraine", "UA"] },
-        { name: "🇰🇭 柬埔寨", keywords: ["柬埔寨", "Cambodia", "KH"] },
-        { name: "🇲🇲 缅甸", keywords: ["缅甸", "Myanmar", "MM"] },
-        { name: "🇦🇶 南极洲", keywords: ["南极洲", "Antarctica", "AQ"] }
+        { name: "🇺🇸 美国", keywords: ["美国", "United States", "US", "🇺🇸"] },
+        { name: "🇯🇵 日本", keywords: ["日本", "Japan", "JP", "🇯🇵"] },
+        { name: "🇸🇬 新加坡", keywords: ["新加坡", "Singapore", "SG", "🇸🇬"] },
+        { name: "🇹🇼 台湾", keywords: ["台湾", "Taiwan", "TW", "CN_TW", "🇹🇼"] },
+        { name: "🇭🇰 香港", keywords: ["香港", "Hong Kong", "HK", "CN_HK", "🇭🇰"] },
+        { name: "🇩🇪 德国", keywords: ["德国", "Germany", "DE", "🇩🇪"] },
+        { name: "🇬🇧 英国", keywords: ["英国", "United Kingdom", "UK", "GB", "🇬🇧"] },
+        { name: "🇫🇷 法国", keywords: ["法国", "France", "FR", "🇫🇷"] },
+        { name: "🇨🇦 加拿大", keywords: ["加拿大", "Canada", "CA", "🇨🇦"] },
+        { name: "🇰🇷 韩国", keywords: ["韩国", "Korea", "KR", "🇰🇷"] },
+        { name: "🇦🇺 澳大利亚", keywords: ["澳大利亚", "Australia", "AU", "🇦🇺"] },
+        { name: "🇦🇪 阿联酋", keywords: ["阿联酋", "UAE", "Dubai", "🇦🇪"] },
+        { name: "🇲🇴 澳门", keywords: ["澳门", "Macau", "MO", "🇲🇴"] },
+        { name: "🇮🇳 印度", keywords: ["印度", "India", "IN", "🇮🇳"] },
+        { name: "🇧🇷 巴西", keywords: ["巴西", "Brazil", "BR", "🇧🇷"] },
+        { name: "🇷🇺 俄罗斯", keywords: ["俄罗斯", "Russia", "RU", "🇷🇺"] },
+        { name: "🇹🇷 土耳其", keywords: ["土耳其", "Turkey", "TR", "🇹🇷"] },
+        { name: "🇹🇭 泰国", keywords: ["泰国", "Thailand", "TH", "🇹🇭"] },
+        { name: "🇲🇾 马来西亚", keywords: ["马来西亚", "Malaysia", "MY", "🇲🇾"] },
+        { name: "🇻🇳 越南", keywords: ["越南", "Vietnam", "VN", "🇻🇳"] },
+        { name: "🇵🇭 菲律宾", keywords: ["菲律宾", "Philippines", "PH", "🇵🇭"] },
+        { name: "🇦🇷 阿根廷", keywords: ["阿根廷", "Argentina", "AR", "🇦🇷"] },
+        { name: "🇰🇿 哈萨克斯坦", keywords: ["哈萨克斯坦", "Kazakhstan", "KZ", "🇰🇿"] },
+        { name: "🇪🇬 埃及", keywords: ["埃及", "Egypt", "EG", "🇪🇬"] },
+        { name: "🇵🇰 巴基斯坦", keywords: ["巴基斯坦", "Pakistan", "PK", "🇵🇰"] },
+        { name: "🇳🇬 尼日利亚", keywords: ["尼日利亚", "Nigeria", "NG", "🇳🇬"] },
+        { name: "🇺🇦 乌克兰", keywords: ["乌克兰", "Ukraine", "UA", "🇺🇦"] },
+        { name: "🇰🇭 柬埔寨", keywords: ["柬埔寨", "Cambodia", "KH", "🇰🇭"] },
+        { name: "🇲🇲 缅甸", keywords: ["缅甸", "Myanmar", "MM", "🇲🇲"] },
+        { name: "🇦🇶 南极洲", keywords: ["南极洲", "Antarctica", "AQ", "🇦🇶"] }
     ];
 
-    // 3. 初始化 Map 容器，保持插入顺序
-    // 结构: Map { "美国" => [], "日本" => [], ... }
+    // 3. 初始化 Map
     const countryMap = new Map();
     countriesConfig.forEach(c => countryMap.set(c.name, {
         proxies: [],
@@ -193,11 +271,8 @@ const scriptContent = `function main(config, profileName) {
 
     const proxies = config.proxies || [];
 
-    // 4. 高效遍历：只遍历一次代理列表 (Performance Fix)
-    // 原始逻辑是：国家 -> 遍历所有代理 (N * M)
-    // 优化逻辑是：代理 -> 找到匹配的第一个国家 (N * 1)
+    // 4. 分类节点
     proxies.forEach(proxy => {
-        // 查找该代理符合哪个国家（找到第一个即停止，避免重复归类）
         const matchedCountry = countriesConfig.find(c =>
             c.keywords.some(keyword => proxy.name.includes(keyword))
         );
@@ -211,38 +286,50 @@ const scriptContent = `function main(config, profileName) {
     const countryGroups = [];
     const mainGroupProxies = [];
 
-    // 遍历 Map 生成最终配置
     for (const [name, data] of countryMap) {
-        // 只有当该国家有节点时，才创建分组
         if (data.proxies.length > 0) {
-            // 添加到主选择组的列表中
-            mainGroupProxies.push(name);
+            const urlTestName = \`⚡ \${name}\`;
+            const loadBalanceName = \`⚖️ \${name}\`;
 
-            // 创建该国家的 url-test 组
+            // 主选择组中添加两种模式
+            mainGroupProxies.push(urlTestName);
+            mainGroupProxies.push(loadBalanceName);
+
+            // url-test 组（自动选择最快）
             countryGroups.push({
-                "name": name,
-                "type": "url-test",
-                "url": TEST_URL,
-                "interval": TEST_INTERVAL,
-                "tolerance": 50, // 建议加上容差，避免频繁切换
-                "proxies": data.proxies
+                name: urlTestName,
+                type: "url-test",
+                url: TEST_URL,
+                interval: TEST_INTERVAL,
+                tolerance: 50,
+                proxies: data.proxies
+            });
+
+            // load-balance 组（负载均衡）
+            countryGroups.push({
+                name: loadBalanceName,
+                type: "load-balance",
+                url: TEST_URL,
+                interval: TEST_INTERVAL,
+                strategy: "round-robin",
+                proxies: data.proxies
             });
         }
     }
 
-    // 主手动选择组
+    // 6. 主选择组
     const mainGroup = {
-        "name": profileName,
-        "type": "select",
-        "proxies": mainGroupProxies.length > 0 ? mainGroupProxies : ["DIRECT"] // 防止为空报错
+        name: profileName,
+        type: "select",
+        proxies: mainGroupProxies.length > 0 ? [...mainGroupProxies, "DIRECT"] : ["DIRECT"]
     };
 
-    // 6. 覆盖配置
-    // 注意：这里会将原有的 proxy-groups 完全覆盖。如果想保留原有的（如自动选择等），需要改为 push
+    // 7. 覆盖 proxy-groups
     config["proxy-groups"] = [mainGroup, ...countryGroups];
 
     return config;
-}`
+};
+`
 
 const scriptLines = computed(() => scriptContent.split('\n'))
 
