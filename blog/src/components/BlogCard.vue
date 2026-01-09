@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import avatarImg from '@/assets/avatar.jpg'
 
 const props = defineProps({
   post: {
@@ -44,9 +45,9 @@ const navigateToPost = () => {
       
       <div class="card-actions justify-between items-center mt-4 pt-4 border-t border-base-200">
         <div class="flex items-center gap-2">
-          <div class="avatar placeholder">
-            <div class="bg-neutral text-neutral-content rounded-full w-8 flex items-center justify-center">
-              <span class="text-xs">Z</span>
+          <div class="avatar">
+            <div class="w-8 rounded-full">
+              <img :src="avatarImg" alt="avatar" />
             </div>
           </div>
           <span class="text-sm font-medium">{{ post.author }}</span>

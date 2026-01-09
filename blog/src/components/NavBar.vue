@@ -20,7 +20,7 @@ const closeMenu = () => {
     <div class="navbar bg-base-100/70 backdrop-blur-md shadow-md">
       <!-- Logo -->
       <div class="navbar-start">
-        <RouterLink to="/" class="btn btn-ghost text-xl" @click="closeMenu">My Blog</RouterLink>
+        <RouterLink to="/" class="btn btn-ghost text-xl" @click="closeMenu">MrZengCHN</RouterLink>
       </div>
 
       <!-- Desktop Menu -->
