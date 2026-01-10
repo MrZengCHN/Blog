@@ -219,15 +219,24 @@
                 <!-- YouTube Video -->
                 <div class="mb-6">
                     <p class="mb-4 text-base-content/70">详细的安装和配置教程请观看以下视频：</p>
-                    <div class="aspect-video rounded-2xl overflow-hidden shadow-xl">
-                        <iframe 
-                            class="w-full h-full"
-                            src="https://www.youtube.com/embed/WffyIuCy3Xw" 
-                            title="3x-ui 安装教程"
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen>
-                        </iframe>
+                    <div class="relative group">
+                        <div class="aspect-video rounded-2xl overflow-hidden shadow-xl">
+                            <iframe 
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/WffyIuCy3Xw" 
+                                title="3x-ui 安装教程"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <button @click="showVideoFullscreen = true" 
+                            class="absolute bottom-4 right-4 btn btn-sm btn-primary gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                            </svg>
+                            全屏观看
+                        </button>
                     </div>
                 </div>
 
@@ -309,11 +318,35 @@
                 </svg>
             </button>
         </div>
+
+        <!-- Video Fullscreen Modal -->
+        <div v-if="showVideoFullscreen"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black p-2 md:p-4 transition-all duration-300"
+            @click="showVideoFullscreen = false">
+            <div class="w-full h-full max-h-[90vh] aspect-video" @click.stop>
+                <iframe 
+                    class="w-full h-full"
+                    src="https://www.youtube.com/embed/WffyIuCy3Xw?autoplay=1" 
+                    title="3x-ui 安装教程"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <button class="absolute top-4 right-4 btn btn-circle btn-ghost text-white hover:bg-white/20"
+                @click="showVideoFullscreen = false">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const showVideoFullscreen = ref(false)
 
 onMounted(() => {
     window.scrollTo(0, 0)
