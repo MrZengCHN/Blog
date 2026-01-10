@@ -42,6 +42,11 @@ const router = createRouter({
       name: 'clash-global-extension',
       component: () => import('../views/blogs/202512/ClashGlobalExtension/ClashGlobalExtension.vue'),
     },
+    {
+      path: '/blogs/202601/self-hosted-proxy',
+      name: 'self-hosted-proxy',
+      component: () => import('../views/blogs/202601/SelfHostedProxy/SelfHostedProxy.vue'),
+    },
   ],
 })
 

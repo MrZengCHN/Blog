@@ -22,10 +22,17 @@ const navigateToPost = () => {
   <div @click="navigateToPost" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full">
     <figure class="h-48 overflow-hidden">
       <img 
+        v-if="post.image"
         :src="post.image" 
         :alt="post.title" 
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
+      <div 
+        v-else
+        class="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-500"
+      >
+        <span class="text-6xl">🌐</span>
+      </div>
     </figure>
     <div class="card-body">
       <div class="flex items-center gap-2 mb-2">

@@ -5,8 +5,19 @@ import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.pn
 import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.jpg'
 import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
 import clashGlobalExtensionCover from '@/assets/blogs/202512/ClashGlobalExtension/cover.jpg'
+import selfHostedProxyCover from '@/assets/blogs/202601/SelfHostedProxy/cover.jpg'
 
 const posts = ref([
+  {
+    id: 5,
+    title: '自建代理节点教程',
+    summary: '从零开始搭建属于自己的代理节点，涵盖VPS选择、协议对比、安装配置等完整教程。',
+    date: '2026年1月10日',
+    author: 'Mr. Zeng',
+    tags: ['VPS', 'Proxy', '教程'],
+    image: selfHostedProxyCover,
+    link: '/blogs/202601/self-hosted-proxy'
+  },
   {
     id: 4,
     title: 'Clash全局扩展脚本分享',
