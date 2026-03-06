@@ -215,23 +215,7 @@
                 </h2>
                 <p class="mb-6 text-base-content/70">如果你还没有好用的梯子，可以尝试以下几家（点击注册）：</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- 流量光 -->
-                    <a href="https://llgjc1.com/#/register?code=7ijNhTZR" target="_blank"
-                        class="card bg-base-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-base-200">
-                        <div class="card-body items-center text-center">
-                            <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-primary">流量光机场</h3>
-                            <p class="text-sm opacity-70">高速稳定，性价比之选</p>
-                        </div>
-                    </a>
-
+                <div class="max-w-md">
                     <!-- 宝贝云 -->
                     <a href="https://web1.bby004.com/#/register?code=tD5NWGkz" target="_blank"
                         class="card bg-base-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-base-200 relative">
@@ -254,23 +238,6 @@
                             <h3 class="card-title text-secondary">宝贝云</h3>
                             <p class="text-sm opacity-70">多节点覆盖，畅游无阻</p>
                             <p class="text-xs text-warning font-medium mt-1">🤖 使用AI编程工具的用户强烈推荐</p>
-                        </div>
-                    </a>
-
-                    <!-- 赔钱机场 -->
-                    <a href="https://xn--mes358aby2apfg.com/register?code=NiJSsAPD" target="_blank"
-                        class="card bg-base-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-base-200">
-                        <div class="card-body items-center text-center">
-                            <div class="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <h3 class="card-title text-accent">赔钱机场</h3>
-                            <p class="text-sm opacity-70">实惠价格，优质服务</p>
-                            <p class="text-xs text-accent font-medium mt-1">🎬 流量便宜，适合看电影、日常刷剧、下载大文件</p>
                         </div>
                     </a>
                 </div>
