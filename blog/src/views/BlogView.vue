@@ -6,8 +6,19 @@ import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.j
 import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
 import clashGlobalExtensionCover from '@/assets/blogs/202512/ClashGlobalExtension/cover.jpg'
 import selfHostedProxyCover from '@/assets/blogs/202601/SelfHostedProxy/cover.jpg'
+import cliproxyApiCover from '@/assets/blogs/202604/CliproxyApiInstallation/cover.svg'
 
 const posts = ref([
+  {
+    id: 6,
+    title: 'CPA 安装教程',
+    summary: '介绍 CPA 的安装、远程管理配置、systemd 启动以及 HTTPS 证书接入流程。',
+    date: '2026年4月2日',
+    author: 'Mr. Zeng',
+    tags: ['CPA', '代理', '教程'],
+    image: cliproxyApiCover,
+    link: '/blogs/202604/cliproxy-api-installation'
+  },
   {
     id: 5,
     title: '自建代理节点教程',

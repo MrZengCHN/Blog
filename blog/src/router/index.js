@@ -47,6 +47,11 @@ const router = createRouter({
       name: 'self-hosted-proxy',
       component: () => import('../views/blogs/202601/SelfHostedProxy/SelfHostedProxy.vue'),
     },
+    {
+      path: '/blogs/202604/cliproxy-api-installation',
+      name: 'cliproxy-api-installation',
+      component: () => import('../views/blogs/202604/CliproxyApiInstallation/CliproxyApiInstallation.vue'),
+    },
   ],
 })
 

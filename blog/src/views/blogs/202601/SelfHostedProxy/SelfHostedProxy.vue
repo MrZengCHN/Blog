@@ -307,16 +307,16 @@
                 </div>
             </router-link>
 
-            <button class="btn btn-outline gap-2 group" disabled>
+            <router-link to="/blogs/202604/cliproxy-api-installation" class="btn btn-outline gap-2 group">
                 <div class="text-right">
                     <div class="text-xs opacity-50 font-normal">下一篇</div>
-                    <div class="font-bold">没有了</div>
+                    <div class="font-bold">CPA 安装教程</div>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
-            </button>
+            </router-link>
         </div>
 
         <!-- Video Fullscreen Modal -->
