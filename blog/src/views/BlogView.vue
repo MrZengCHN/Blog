@@ -7,8 +7,19 @@ import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
 import clashGlobalExtensionCover from '@/assets/blogs/202512/ClashGlobalExtension/cover.jpg'
 import selfHostedProxyCover from '@/assets/blogs/202601/SelfHostedProxy/cover.jpg'
 import cliproxyApiCover from '@/assets/blogs/202604/CliproxyApiInstallation/cover.svg'
+import cpaCodexAuthConverterCover from '@/assets/blogs/202606/CpaCodexAuthConverter/cover.svg'
 
 const posts = ref([
+  {
+    id: 7,
+    title: 'CPA Codex认证文件格式转换',
+    summary: '提供一个本地运行的 JSON 转换工具，把 CPA 认证文件整理成 Codex 可读取的 auth 格式。',
+    date: '2026年6月9日',
+    author: 'Mr. Zeng',
+    tags: ['CPA', 'Codex', '工具'],
+    image: cpaCodexAuthConverterCover,
+    link: '/blogs/202606/cpa-codex-auth-converter'
+  },
   {
     id: 6,
     title: 'CPA 安装教程',

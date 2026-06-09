@@ -52,6 +52,11 @@ const router = createRouter({
       name: 'cliproxy-api-installation',
       component: () => import('../views/blogs/202604/CliproxyApiInstallation/CliproxyApiInstallation.vue'),
     },
+    {
+      path: '/blogs/202606/cpa-codex-auth-converter',
+      name: 'cpa-codex-auth-converter',
+      component: () => import('../views/blogs/202606/CpaCodexAuthConverter/CpaCodexAuthConverter.vue'),
+    },
   ],
 })
 
