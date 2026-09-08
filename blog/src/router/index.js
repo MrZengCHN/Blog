@@ -33,11 +33,6 @@ const router = createRouter({
       component: () => import('../views/blogs/202511/AntigravityLoginTips.vue'),
     },
     {
-      path: '/blogs/202512/ai-prompt-tool',
-      name: 'ai-prompt-tool',
-      component: () => import('../views/blogs/202512/AiPromptTool/AiPromptTool.vue'),
-    },
-    {
       path: '/blogs/202512/clash-global-extension',
       name: 'clash-global-extension',
       component: () => import('../views/blogs/202512/ClashGlobalExtension/ClashGlobalExtension.vue'),
@@ -56,6 +51,11 @@ const router = createRouter({
       path: '/blogs/202606/cpa-codex-auth-converter',
       name: 'cpa-codex-auth-converter',
       component: () => import('../views/blogs/202606/CpaCodexAuthConverter/CpaCodexAuthConverter.vue'),
+    },
+    {
+      path: '/blogs/202609/microsoft-store-download-limits',
+      name: 'microsoft-store-download-limits',
+      component: () => import('../views/blogs/202609/MicrosoftStoreDownloadLimits/MicrosoftStoreDownloadLimits.vue'),
     },
   ],
 })

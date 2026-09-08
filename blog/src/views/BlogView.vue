@@ -3,13 +3,23 @@ import { ref } from 'vue'
 import BlogCard from '../components/BlogCard.vue'
 import proxifierCover from '@/assets/blogs/202511/ProxifierIntroduction/cover.png'
 import antigravityCover from '@/assets/blogs/202511/AntigravityLoginTips/cover.jpg'
-import aiPromptToolCover from '@/assets/blogs/202512/AiPromptTool/cover.jpg'
 import clashGlobalExtensionCover from '@/assets/blogs/202512/ClashGlobalExtension/cover.jpg'
 import selfHostedProxyCover from '@/assets/blogs/202601/SelfHostedProxy/cover.jpg'
 import cliproxyApiCover from '@/assets/blogs/202604/CliproxyApiInstallation/cover.svg'
 import cpaCodexAuthConverterCover from '@/assets/blogs/202606/CpaCodexAuthConverter/cover.svg'
+import microsoftStoreDownloadLimitsCover from '@/assets/blogs/202609/MicrosoftStoreDownloadLimits/cover.png'
 
 const posts = ref([
+  {
+    id: 8,
+    title: 'Microsoft Store 突破下载限制教程',
+    summary: '通过网页版 Microsoft Store 获取应用页面链接，再生成可下载的文件链接。',
+    date: '2026年9月8日',
+    author: 'Mr. Zeng',
+    tags: ['Microsoft Store', 'Windows', '教程'],
+    image: microsoftStoreDownloadLimitsCover,
+    link: '/blogs/202609/microsoft-store-download-limits'
+  },
   {
     id: 7,
     title: 'CPA Codex认证文件格式转换',
@@ -49,16 +59,6 @@ const posts = ref([
     tags: ['Clash', 'JavaScript', '代理'],
     image: clashGlobalExtensionCover,
     link: '/blogs/202512/clash-global-extension'
-  },
-  {
-    id: 3,
-    title: '使用 Vue3 实现的 AI 提示词工具分享',
-    summary: '分享一个基于 Vue3 + DaisyUI 开发的 AI 提示词管理工具，包含常用高质量提示词。',
-    date: '2025年12月1日',
-    author: 'Mr. Zeng',
-    tags: ['Vue3', 'AI', '工具'],
-    image: aiPromptToolCover,
-    link: '/blogs/202512/ai-prompt-tool'
   },
   {
     id: 2,

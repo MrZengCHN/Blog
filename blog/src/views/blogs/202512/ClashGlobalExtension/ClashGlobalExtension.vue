@@ -338,14 +338,14 @@
         <!-- Navigation -->
         <div
             class="flex justify-between items-center mt-12 pt-8 border-t border-base-200 animate-fade-in-up animation-delay-500">
-            <router-link to="/blogs/202512/ai-prompt-tool" class="btn btn-outline gap-2 group">
+            <router-link to="/blogs/202511/antigravity-login-tips" class="btn btn-outline gap-2 group">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:-translate-x-1 transition-transform"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
                 <div class="text-left">
                     <div class="text-xs opacity-50 font-normal">上一篇</div>
-                    <div class="font-bold">AI 提示词工具</div>
+                    <div class="font-bold">Antigravity 登录技巧</div>
                 </div>
             </router-link>
 
