@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && git -C .. add -- index.html assets",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {

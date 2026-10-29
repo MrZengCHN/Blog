@@ -2,7 +2,7 @@
 <!-- agents-md-autosync: schema=v1; last_synced_commit=15628f6502531bc7605b319bc80eec3b7892070e; last_synced_at=2026-05-04; -->
 # Project Snapshot
 
-- 这是一个基于 Vue 3 + Vite 的个人博客仓库，源码主要位于 `blog/`，仓库根目录保存构建产物。
+- 这是一个基于 Vue 3 + Vite 的个人博客仓库，源码主要位于 `blog/`，构建产物位于 `blog/dist/`，部署到自有服务器。
 - 主要技术栈：Vue 3、Vue Router、Pinia、Tailwind CSS v4、DaisyUI、Vite。
 - Node 版本要求来自 `blog/package.json`：`^20.19.0 || >=22.12.0`。
 - 关键目录：
@@ -12,7 +12,7 @@
   - `blog/src/assets/blogs`：文章素材资源，按 `yyyyMM/blogName` 组织。
   - `blog/public`：Vite 静态资源。
   - `blog/server`：独立 Node 子目录，目前只有最小 `package.json` 占位。
-  - `assets/` 与仓库根 `index.html`：构建输出，不是主开发入口。
+  - `blog/dist/`：当前构建输出，部署到服务器 `/opt/blog/`；根 `assets/` 与 `index.html` 是旧 GitHub Pages 产物，不是主开发入口。
 
 # Quick Commands
 
@@ -20,13 +20,15 @@
 - 本地开发：`cd blog; npm run dev`
 - 生产构建：`cd blog; npm run build`
 - 本地预览：`cd blog; npm run preview`
+- 部署：本地构建后上传 `blog/dist/` 内容至 `root@154.40.47.191:/opt/blog/`，站点为 `https://blog.mrzengchn.com`；操作步骤见 `README.md`。
 - 测试：当前仓库未配置可用的根测试命令；`blog/server/package.json` 中的 `npm test` 是占位失败脚本。
 - lint / format / typecheck：当前未发现已配置的顶层脚本，变更后至少跑一次 `cd blog; npm run build` 做最小验证。
 
 # Repo Structure
 
 - 前端入口是 `blog/src/main.js`，路由定义在 `blog/src/router/index.js`。
-- `blog/vite.config.js` 设置了 `base: '/Blog/'`，构建输出到仓库根目录，并在构建开始时清理根 `assets/`。
+- `blog/vite.config.js` 设置了 `base: '/'`，构建输出到 `blog/dist/`，构建不会清理根 `assets/` 或自动暂存 Git 文件。
+- 路由使用 `createWebHistory(import.meta.env.BASE_URL)`，Nginx 需要将页面请求回退到 `index.html`，而 `/assets/` 中不存在的资源返回 404。
 - 不要把仓库根 `index.html` 或 `assets/*` 当作源码直接修改；常规改动应落在 `blog/src/**`。
 
 # Blog Authoring Rules
@@ -45,13 +47,14 @@
 - 使用 PowerShell，不要切换到 `cmd`。
 - 默认编码为 UTF-8。
 - 前端页面优先复用 DaisyUI 组件，并尽量把直接操作封装进组件。
-- 涉及构建输出或发布结果的修改后，至少执行 `cd blog; npm run build`；如果只改路由或页面，也至少确认对应入口和资源路径未破坏 `/Blog/` 基路径。
+- 涉及构建输出或发布结果的修改后，至少执行 `cd blog; npm run build`；如果只改路由或页面，也至少确认根路径资源、直接访问及刷新页面正常。
 - 不要在文档、日志或提交内容里写入 `.env`、令牌、密钥等敏感信息。
 
 # Where to Look
 
 - `blog/package.json`：前端依赖、Node 版本要求、脚本入口。
-- `blog/vite.config.js`：构建输出位置、别名、静态资源清理逻辑。
+- `blog/vite.config.js`：构建输出位置、站点基路径、别名。
+- `README.md`：本地构建、服务器部署及 Nginx 配置说明。
 - `blog/src/router/index.js`：站点路由和文章页面注册位置。
 - `blog/.agent/rules/blog.md`：文章目录约定和页面生成偏好。
 - `blog/src/views`、`blog/src/components`、`blog/src/assets`：页面、组件、素材的核心位置。

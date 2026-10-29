@@ -1,6 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-import fs from 'node:fs'
-import path from 'node:path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -9,22 +7,12 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Blog/',
+  // The custom domain serves the site from its root.
+  base: '/',
   build: {
-    outDir: '../',
-    emptyOutDir: false,
+    outDir: 'dist',
   },
   plugins: [
-    {
-      name: 'clean-assets',
-      buildStart() {
-        const assetsDir = path.resolve(__dirname, '../assets')
-        if (fs.existsSync(assetsDir)) {
-          fs.rmSync(assetsDir, { recursive: true, force: true })
-          console.log(`\nDeleted ${assetsDir}`)
-        }
-      }
-    },
     vue(),
     tailwindcss(),
   ],

@@ -1,8 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  // Nginx falls back to index.html so article links work without a hash.
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
